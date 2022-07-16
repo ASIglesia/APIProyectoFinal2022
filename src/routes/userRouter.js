@@ -1,6 +1,5 @@
 const {
     getAllUsers,
-    getForm,
     addnewUser,
     loginUser,
     getUserById,
@@ -20,21 +19,22 @@ const {
 const express = require("express");
 const routes=express.Router();
 
+
 //get all users
-routes.get("/usuarios", getAllUsers);
+routes.get("/", getAllUsers);
 
 //register user
-routes.get("/registrate", getForm);
+//routes.get("/registrate", getForm);
 routes.post("/registrate", validatorCreateUser, addnewUser);
 
 //login user
 routes.post("/login", validatorLoginUser, loginUser);
 
 //get user by id
-routes.get("/usuarios/:id", getUserById);
+routes.get("/:id", getUserById);
 
 //modify user
-routes.patch("/usuarios/:id", patchUserById)
+routes.patch("/:id", patchUserById)
 
 //Password Reclaiming
     //forgot password 
@@ -46,5 +46,5 @@ routes.get("/login/reestablecer-contraseña/:token",resetPass)
 routes.post("/login/reestablecer-contraseña/:token",validatorOverwritePass,overwritePass)      
 
 //delete user by id
-routes.delete("/usuarios/:id", deleteUserById);
+routes.delete("/:id", deleteUserById);
 module.exports= routes;

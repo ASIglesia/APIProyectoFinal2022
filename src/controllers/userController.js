@@ -17,12 +17,9 @@ const getAllUsers = async (req,res,next) => {
     const dbResponse = await getAllUsersdb();
     if (dbResponse instanceof Error) return next(dbResponse);
     dbResponse.length ? res.status(200).json(dbResponse) : next()
-}
-//register user: Registra un nuevo usuario
-//Mover a un archivo de render?
-const getForm = async (req,res,next)=>{
-    res.render('pages/registrate');
 };
+
+//register user: Registra un nuevo usuario
 const addnewUser = async (req,res,next)=>{
     const nombre_usuario = await req.body.nombre_usuario;
     const nivel_acceso = await req.body.nivel_acceso;
@@ -140,7 +137,6 @@ const deleteUserById = async (req,res,next) => {
 };
 module.exports= {
     getAllUsers,
-    getForm,
     addnewUser,
     loginUser,
     getUserById,

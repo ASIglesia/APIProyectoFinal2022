@@ -1,14 +1,19 @@
 //Requirements
 require('dotenv').config()
+require('../config/database');
+const port=process.env.PORT || 4005; /*Run on given value port, or 4005 if none given */
 const express = require("express");
 const app = express();
 const path= require('path');
-require('../config/database');
-const port=process.env.PORT || 4005; /*Run on given value port, or 4005 if none given */
 
 //JSON
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
+
+//Bootstrap
+app.use('/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css')))
+app.use('/js', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js')))
+
 
 //EJS
 app.set("views",path.join(__dirname,'views'));
